@@ -1,6 +1,11 @@
 # ncip-tools
 Utility Library - NCIP tools
 
+# Dependencies
+
+* Gradle 5.0
+
+
 # Additional documentation
 
 * http://www.ncip.info/introduction-to-ncip.html

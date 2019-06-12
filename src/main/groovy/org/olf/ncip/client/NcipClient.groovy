@@ -1,4 +1,4 @@
-package org.olf.ncip.schema;
+package org.olf.ncip.client;
 
 public interface NcipClient {
   

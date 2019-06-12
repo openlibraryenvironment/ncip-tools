@@ -1,6 +1,6 @@
-package org.olf.ncip.schema;
+package org.olf.ncip.client;
 
-public class Ncip202Client implements  NcipClient {
+public class Ncip202Client extends  BaseClient {
   
   Map lookupUser() {
   }

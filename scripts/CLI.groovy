@@ -39,7 +39,7 @@ import static groovyx.net.http.Method.POST
 import java.util.Properties
 import java.text.*
 
-def cli = new CliBuilder(usage: 'CLI -h -u user -p pass -t NCIPTargetUrl')
+def cli = new CliBuilder(usage: 'groovy -cp ./path/to/ncip-tools.jar ./CLI.groovy -h -u user -p pass -t NCIPTargetUrl')
 // Create the list of options.
 cli.with {
   h longOpt: 'help', 'Show usage information'

@@ -2,14 +2,8 @@
 
 node {
 
-  stages {
-
-    stage('Publish Artifact to Nexus') {
-      steps {
-        sh './gradlew uploadArchives --no-daemon'
-      }
-    }
-
+  stage('Publish Artifact to Nexus') {
+    sh './gradlew uploadArchives --no-daemon'
   }
 
 }

@@ -17,6 +17,9 @@
   @Grab(group='org.olf', module='ncip-tools', version='1.0.2-SNAPSHOT', changing=true)
 ])
 
+// Developer warning: Grap setup for refreshing snapshots can be variable - if all else fails, manually
+// remove ~.groovy/grapes/org.olf/ncip-tools/jars/ncip-tools-1.0.2-SNAPSHOT.jar
+
 import groovyx.net.http.*
 import static groovyx.net.http.ContentType.URLENC
 import static groovyx.net.http.ContentType.*

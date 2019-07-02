@@ -13,7 +13,11 @@ use
 
 To build and deploy the library to the respective
 
+# Command line testing
 
+A command line utility is provided in the scripts directory which can be run using the form
+
+    groovy ./CLI.groovy -u user -p pass -t NCIPTargetUrl
 
 # Additional documentation
 

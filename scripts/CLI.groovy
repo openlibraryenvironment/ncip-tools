@@ -14,7 +14,7 @@
   @Grab(group='org.slf4j', module='jcl-over-slf4j', version='1.7.6'),
   @Grab(group='net.sourceforge.nekohtml', module='nekohtml', version='1.9.22'),
   @Grab(group='xerces', module='xercesImpl', version='2.11.0'),
-  @Grab(group='org.olf', module='ncip-tools', version='1.0.2-SNAPSHOT')
+  @Grab(group='org.olf', module='ncip-tools', version='1.0.2-SNAPSHOT', changing=true)
 ])
 
 import groovyx.net.http.*

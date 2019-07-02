@@ -51,13 +51,18 @@ jaxb {
 
 group = 'org.olf'
 sourceCompatibility = 1.8
-version = '1.0.1'
+version = '1.0.2-SNAPSHOT'
 
 // See https://docs.gradle.org/current/userguide/maven_plugin.html#uploading_to_maven_repositories
 uploadArchives {
     repositories {
         mavenDeployer {
             repository(url: "http://nexus.k-int.com/content/repositories/releases/") {
+                def usr = project.hasProperty('knowintNexusUser') ? knowintNexusUser :''
+                def pass = project.hasProperty('knowintNexusPass') ? knowintNexusPass :''
+                authentication(userName: usr, password: pass)
+            }
+            snapshotRepository(url: "http://nexus.k-int.com/content/repositories/snapshots/") {
                 def usr = project.hasProperty('knowintNexusUser') ? knowintNexusUser :''
                 def pass = project.hasProperty('knowintNexusPass') ? knowintNexusPass :''
                 authentication(userName: usr, password: pass)

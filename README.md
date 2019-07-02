@@ -5,6 +5,15 @@ Utility Library - NCIP tools
 
 * Gradle 5.0
 
+# Deploy snapshot / release
+
+use
+
+    gradle uploadArchives
+
+To build and deploy the library to the respective
+
+
 
 # Additional documentation
 

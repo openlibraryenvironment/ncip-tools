@@ -71,7 +71,7 @@ if (options.h) {
 
 NcipClient ncip_client = new Ncip202Client(options.t);
 
-Map lookup_client_response = ncip_client.lookupUser()
+Map lookup_client_response = ncip_client.lookupUser('reshare_test_user_id')
 
 println("Lookup client response: ${lookup_client_response}");
 

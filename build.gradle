@@ -55,7 +55,10 @@ group = 'org.olf'
 sourceCompatibility = 1.8
 version = '1.0.2-SNAPSHOT'
 
-// See https://docs.gradle.org/current/userguide/maven_plugin.html#uploading_to_maven_repositories
+// In development, set
+// knowintNexusUser and knowintNexusPass in ~/.gradle/gradle.properties
+//
+// See Also https://docs.gradle.org/current/userguide/maven_plugin.html#uploading_to_maven_repositories
 uploadArchives {
     repositories {
         mavenDeployer {

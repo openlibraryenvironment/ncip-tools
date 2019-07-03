@@ -17,8 +17,8 @@ import groovy.json.JsonBuilder;
 
 public class Ncip202Client extends  BaseClient {
 
-  public Ncip202Client(String address) {
-    super(address);
+  public Ncip202Client(String addr) {
+    super(addr);
   }
   
   Object lookupUser(String the_userid_to_lookup) {
@@ -50,9 +50,9 @@ public class Ncip202Client extends  BaseClient {
 
     NCIPMessage response = null;
 
-    if ( address ) {
+    if ( this.address ) {
 
-      HTTPBuilder http = new HTTPBuilder(address)
+      HTTPBuilder http = new HTTPBuilder(this.address)
 
       try {
         StringWriter writer = new StringWriter();
@@ -88,7 +88,7 @@ public class Ncip202Client extends  BaseClient {
       }
     }
     else {
-      System.err.println("NO address in message payload header ${message_header}");
+      System.err.println("NO address in message payload header");
     }
 
     return response;

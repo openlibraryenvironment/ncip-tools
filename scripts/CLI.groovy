@@ -74,3 +74,5 @@ NcipClient ncip_client = new Ncip202Client(options.t);
 Map lookup_client_response = ncip_client.lookupUser()
 
 println("Lookup client response: ${lookup_client_response}");
+
+

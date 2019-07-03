@@ -2,7 +2,7 @@ package org.olf.ncip.client;
 
 public interface NcipClient {
   
-  Map lookupUser();
-  Map lookupItem();
-  Map createUser();
+  Object lookupUser(String user_id_to_lookup);
+  Object lookupItem();
+  Object createUser();
 }

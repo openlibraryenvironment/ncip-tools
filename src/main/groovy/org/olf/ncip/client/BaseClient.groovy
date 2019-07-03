@@ -20,7 +20,7 @@ public abstract class BaseClient implements  NcipClient {
     return http;
   }
 
-  abstract Map lookupUser();
-  abstract Map lookupItem();
-  abstract Map createUser();
+  abstract Object lookupUser(String user_id_to_lookup);
+  abstract Object lookupItem();
+  abstract Object createUser();
 }

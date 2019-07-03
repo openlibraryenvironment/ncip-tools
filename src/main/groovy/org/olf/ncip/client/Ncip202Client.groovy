@@ -35,7 +35,7 @@ public class Ncip202Client extends  BaseClient {
 
     NCIPMessage response = send(lookup_user_msg);
 
-    return new JsonBuilder(wrapped_message)
+    return new JsonBuilder(response)
   }
 
   Object lookupItem() {
@@ -48,11 +48,12 @@ public class Ncip202Client extends  BaseClient {
 
   public send(NCIPMessage message) {
 
-    NCIPMessage response = null;
+    NCIPMessage ncip_response_msg = null;
 
-    if ( this.address ) {
+    if ( this.getAddress() ) {
 
-      HTTPBuilder http = new HTTPBuilder(this.address)
+      System.out.println("Send to ${this.getAddress()}");
+      HTTPBuilder http = new HTTPBuilder(this.getAddress())
 
       try {
         StringWriter writer = new StringWriter();
@@ -70,11 +71,14 @@ public class Ncip202Client extends  BaseClient {
           body = message_as_xml
 
           response.success = { resp, reader ->
-            // resp.headers.each { h -> logger.debug("${h}"); }
+            resp.headers.each { h -> System.out.println("${h}"); }
+
             String txt = reader.text
+            System.out.println(txt);
+
             Unmarshaller u = ctx.createUnmarshaller();
             NCIPMessage response_msg = u.unmarshal(new ByteArrayInputStream(txt.getBytes()))
-            response = response_msg;
+            ncip_response_msg = response_msg;
           }
 
           response.failure = { resp ->
@@ -84,14 +88,18 @@ public class Ncip202Client extends  BaseClient {
         }
       }
       catch ( Exception e ) {
-        System.err.println("problem marshalling XML",e);
+        System.err.println("problem marshalling XML");
+        e.printStackTrace()
+      }
+      finally {
+        System.out.println("http call completed");
       }
     }
     else {
-      System.err.println("NO address in message payload header");
+      System.err.println("No address in message payload header");
     }
 
-    return response;
+    return ncip_response_msg;
   }
 
 }

@@ -11,7 +11,7 @@ public abstract class BaseClient implements  NcipClient {
   /**
    *  Construct a new NCIP client given an address of the form hostname:port
    */
-  public BaseClient(String addres) {
+  public BaseClient(String address) {
     this.address = address;
   }
 

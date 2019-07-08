@@ -49,6 +49,15 @@ jaxb {
     destinationDir = "src/generated/java"
     generatePackage = "org.olf.ncip.schema" 
   }
+
+  // xjc doesn't support dtds - argh!
+  // xjc {
+  //   schema = "src/main/resources/dtd/ncip_v1_0.dtd"
+  //   destinationDir = "src/generated/java"
+  //   generatePackage = "org.olf.ncip.v1schema" 
+  //   args = [ "-dtd" ]
+  // }
+
 }
 
 group = 'org.olf'

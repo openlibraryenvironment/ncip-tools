@@ -46,6 +46,11 @@ public class Ncip202Client extends  BaseClient {
     return [:]
   }
 
+  Object placeHold() {
+    // Realised using ncip AcceptItem message
+    return [:]
+  }
+
   public send(NCIPMessage message) {
 
     NCIPMessage ncip_response_msg = null;

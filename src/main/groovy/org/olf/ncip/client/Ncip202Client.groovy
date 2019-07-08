@@ -1,8 +1,8 @@
 package org.olf.ncip.client;
 
-import org.olf.ncip.schema.NCIPMessage;
-import org.olf.ncip.schema.LookupUser;
-import org.olf.ncip.schema.UserId;
+import org.olf.ncip.v2schema.NCIPMessage;
+import org.olf.ncip.v2schema.LookupUser;
+import org.olf.ncip.v2schema.UserId;
 import javax.annotation.PostConstruct
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.Marshaller

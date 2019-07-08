@@ -47,7 +47,7 @@ jaxb {
   xjc {
     xsdDir = "src/main/resources/schema"
     destinationDir = "src/generated/java"
-    generatePackage = "org.olf.ncip.schema" 
+    generatePackage = "org.olf.ncip.v2schema" 
   }
 
   // xjc doesn't support dtds - argh!

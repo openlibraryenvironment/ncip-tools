@@ -43,13 +43,14 @@ import java.util.Properties
 import java.text.*
 import org.olf.ncip.client.*
 
-def cli = new CliBuilder(usage: 'groovy ./CLI.groovy -h -u user -p pass -t NCIPTargetUrl')
+def cli = new CliBuilder(usage: 'groovy ./CLI.groovy -h -v 1 -u user -p pass -t NCIPTargetUrl')
 // Create the list of options.
 cli.with {
   h longOpt: 'help', 'Show usage information'
-  u longOpt: 'user', args: 1, argName: 'username', 'username', required:true
+  u longOpt: 'user', args: 1, argName: 'username', 'username', required:false
   p longOpt: 'pass', args: 1, argName: 'password', 'password', required:false
   t longOpt: 'target', args: 1, argName: 'target', 'target', required:true
+  v longOpt: 'ncipVersion', args: 1, argName: 'ncipVersion', 'ncipVersion', required:true
 }
 
 def options = cli.parse(args)
@@ -68,7 +69,16 @@ if (options.h) {
 }
 
 println("Create new ncip_client for ${options.t}");
-NcipClient ncip_client = new Ncip202Client(options.t);
+NcipClient ncip_client = null;
+switch ( options.v ) {
+  case '1':
+    new Ncip1Client(options.t);
+  case '2':
+    new Ncip202Client(options.t);
+  default:
+    System.exit(1);
+}
+
 
 Object lookup_client_response = ncip_client.lookupUser('reshare_test_user_id')
 

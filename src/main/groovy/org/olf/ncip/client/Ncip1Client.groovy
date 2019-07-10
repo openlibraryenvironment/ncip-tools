@@ -2,7 +2,11 @@ package org.olf.ncip.client;
 
 import org.olf.ncip.v1schema.NCIPMessage;
 import org.olf.ncip.v1schema.LookupUser;
-import org.olf.ncip.v1schema.UserIdentifierValue;
+import org.olf.ncip.v1schema.VisibleUserId;
+import org.olf.ncip.v1schema.VisibleUserIdentifierType;
+import org.olf.ncip.v1schema.VisibleUserIdentifier;
+import org.olf.ncip.v1schema.Scheme;
+import org.olf.ncip.v1schema.Value;
 import javax.annotation.PostConstruct
 import javax.xml.bind.JAXBContext
 import javax.xml.bind.Marshaller
@@ -24,15 +28,18 @@ public class Ncip1Client extends  BaseClient {
   Object lookupUser(String the_userid_to_lookup) {
     NCIPMessage lookup_user_msg = new NCIPMessage();
     LookupUser lookup_user_payload = new LookupUser();
-    lookup_user_msg.setLookupUser(lookup_user_payload);
-    
+
+    lookup_user_msg.getHelper().add(lookup_user_payload);
 
     // lookup_user_payload.setInitiationHeader(new InitiationHeader());
-    UserIdentifierValue user_id = new UserIdentifierValue()
-    // user_id.setDatatype('');
-    user_id.setvalue(the_userid_to_lookup);
 
-    lookup_user_payload.setUserId(user_id);
+    VisibleUserId user_id = new VisibleUserId();
+    user_id.setVisibleUserIdentifierType(new VisibleUserIdentifierType(
+                                           scheme: new Scheme(datatype:'string', value:'unknown'),
+                                           value: new Value(datatype:'string', value:'unknown')));
+    user_id.setVisibleUserIdentifier(new VisibleUserIdentifier(datatype:'string', value:the_userid_to_lookup));
+
+    lookup_user_payload.getUniqueUserIdOrVisibleUserIdOrAuthenticationInput().add(user_id);
 
     NCIPMessage response = send(lookup_user_msg);
 

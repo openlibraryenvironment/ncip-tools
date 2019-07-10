@@ -72,16 +72,24 @@ println("Create new ncip_client for ${options.t}");
 NcipClient ncip_client = null;
 switch ( options.v ) {
   case '1':
-    new Ncip1Client(options.t);
+    ncip_client = new Ncip1Client(options.t);
+    break;
   case '2':
-    new Ncip202Client(options.t);
+    ncip_client = new Ncip202Client(options.t);
+    break;
   default:
+    println("Unable to process version argument: ${options.v} ${options.v?.class?.name}");
     System.exit(1);
 }
 
 
-Object lookup_client_response = ncip_client.lookupUser('reshare_test_user_id')
-
-println("Lookup client response: ${lookup_client_response}");
+try {
+  println("Calling lookup user");
+  Object lookup_client_response = ncip_client.lookupUser('reshare_test_user_id')
+  println("Lookup client response: ${lookup_client_response}");
+}
+catch ( Exception e ) {
+  e.printStackTrace();
+}
 
 

@@ -1,16 +1,6 @@
 package org.olf.ncip.client;
 
-import org.olf.ncip.v1schema.NCIPMessage;
-import org.olf.ncip.v1schema.LookupUser;
-import org.olf.ncip.v1schema.VisibleUserId;
-import org.olf.ncip.v1schema.VisibleUserIdentifierType;
-import org.olf.ncip.v1schema.VisibleUserIdentifier;
-import org.olf.ncip.v1schema.Scheme;
-import org.olf.ncip.v1schema.Value;
 import javax.annotation.PostConstruct
-import javax.xml.bind.JAXBContext
-import javax.xml.bind.Marshaller
-import javax.xml.bind.Unmarshaller
 import groovy.json.JsonSlurper
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
@@ -19,32 +9,63 @@ import groovy.json.JsonOutput;
 import groovy.json.JsonBuilder;
 
 
-public class Ncip1Client extends  BaseClient {
+/**
+ * This version of the client does not use the JAXB marshallers, but instead constructs the
+ * XML manually - currently evaluating the two options to decide which works best
+ */
+public class Ncip1SimpleClient extends  BaseClient {
 
-  public Ncip1Client(String addr) {
+  public Ncip1SimpleClient(String addr) {
     super(addr);
   }
   
   Object lookupUser(String the_userid_to_lookup) {
-    NCIPMessage lookup_user_msg = new NCIPMessage();
-    LookupUser lookup_user_payload = new LookupUser();
+    try {
+      HTTPBuilder http = new HTTPBuilder(this.getAddress())
 
-    lookup_user_msg.getHelper().add(lookup_user_payload);
+      http.request(Method.POST, ContentType.TEXT) { req ->
 
-    // lookup_user_payload.setInitiationHeader(new InitiationHeader());
+        headers.accept = 'application/xml'
 
-    VisibleUserId user_id = new VisibleUserId();
-    user_id.setVisibleUserIdentifierType(new VisibleUserIdentifierType(
-                                           scheme: new Scheme(datatype:'string', value:'unknown'),
-                                           value: new Value(datatype:'string', value:'unknown')));
+        requestContentType=ContentType.XML
+        body =  {
+          mkp.xmlDeclaration()
+          NCIPMessage(version:'http://www.niso.org/ncip/v1_0/imp1/dtd/ncip_v1_0.dtd') {
+            LookupUser {
+              InitiationHeader {
+                FromAgencyId {
+                  UniqueAgencyId {
+                    Value (caiatns)
+                  }
+                }
+                ToAgencyId {
+                  UniqueAgencyId {
+                    Value ('caiatns')
+                  }
+                }
+              }
+              ApplicationProfileType {
+                Value ( 'caiatns' )
+              }
+            }
+          }
+        }
 
-    user_id.setVisibleUserIdentifier(value:the_userid_to_lookup);
+        response.success = { resp, xml ->
+          resp.headers.each { h -> System.out.println("${h}"); }
+          println("Result: ${xml}");
+        }
 
-    lookup_user_payload.getUniqueUserIdOrVisibleUserIdOrAuthenticationInput().add(user_id);
+        response.failure = { resp ->
+          system.err.println("ISO18626 call failed: ${resp.status}");
+        }
 
-    NCIPMessage response = send(lookup_user_msg);
+      }
 
-    return new JsonBuilder(response)
+    }
+    catch ( Exception e ) {
+      e.printStackTrace()
+    }
   }
 
   Object lookupItem() {

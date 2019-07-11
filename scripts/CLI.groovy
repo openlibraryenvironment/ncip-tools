@@ -72,7 +72,7 @@ println("Create new ncip_client for ${options.t}");
 NcipClient ncip_client = null;
 switch ( options.v ) {
   case '1':
-    ncip_client = new Ncip1Client(options.t);
+    ncip_client = new Ncip1SimpleClient(options.t);
     break;
   case '2':
     ncip_client = new Ncip202Client(options.t);

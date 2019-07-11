@@ -85,7 +85,7 @@ switch ( options.v ) {
 
 try {
   println("Calling lookup user");
-  Object lookup_client_response = ncip_client.lookupUser('reshare_test_user_id')
+  Object lookup_client_response = ncip_client.lookupUser('31207008727889')
   println("Lookup client response: ${lookup_client_response}");
 }
 catch ( Exception e ) {

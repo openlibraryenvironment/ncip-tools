@@ -1,0 +1,3 @@
+<NCIPMessage version='http://www.niso.org/ncip/v1_0/imp1/dtd/ncip_v1_0.dtd'><LookupUser><InitiationHeader><FromAgencyId><UniqueAgencyId><Value>caiatns</Value></UniqueAgencyId></FromAgencyId><ToAgencyId><UniqueAgencyId><Value>caiatns</Value></UniqueAgencyId></ToAgencyId><ApplicationProfileType><Value>caiatns</Value></ApplicationProfileType></InitiationHeader><VisibleUserId><VisibleUserIdentifierType><Scheme>string</Scheme><Value>barcode</Value></VisibleUserIdentifierType><VisibleUserIdentifier>31207008727889</VisibleUserIdentifier></VisibleUserId></LookupUser></NCIPMessage>
+
+

@@ -24,19 +24,25 @@ public class Ncip1SimpleClient extends  BaseClient {
     try {
       HTTPBuilder http = new HTTPBuilder(this.getAddress())
 
-      http.request(Method.POST, ContentType.TEXT) { req ->
+      http.request(Method.POST) { req ->
 
-        headers.accept = 'application/xml'
+        // headers.accept = 'application/xml'
+        // requestContentType=ContentType.XML
+        requestContentType='text/xml'
+        // headers.'User-Agent' = 'curl/7.64.0 '
 
-        requestContentType=ContentType.XML
+        // try request the response as ContentType.TEXT instead of XML
+        contentType: ContentType.XML
+
         body =  {
-          mkp.xmlDeclaration()
+          // We definitelt DO NOT want the XML declaration - will cause at least some servers to choke
+          // mkp.xmlDeclaration()
           NCIPMessage(version:'http://www.niso.org/ncip/v1_0/imp1/dtd/ncip_v1_0.dtd') {
             LookupUser {
               InitiationHeader {
                 FromAgencyId {
                   UniqueAgencyId {
-                    Value (caiatns)
+                    Value ('caiatns')
                   }
                 }
                 ToAgencyId {
@@ -50,6 +56,7 @@ public class Ncip1SimpleClient extends  BaseClient {
               }
               VisibleUserId {
                 VisibleUserIdentifierType {
+                  Scheme('string')
                   Value('barcode')
                 }
                 VisibleUserIdentifier(the_userid_to_lookup)

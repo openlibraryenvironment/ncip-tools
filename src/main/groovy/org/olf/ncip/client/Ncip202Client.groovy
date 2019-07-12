@@ -26,7 +26,6 @@ public class Ncip202Client extends  BaseClient {
     LookupUser lookup_user_payload = new LookupUser();
     lookup_user_msg.setLookupUser(lookup_user_payload);
     
-
     // lookup_user_payload.setInitiationHeader(new InitiationHeader());
     UserId user_id = new UserId()
     user_id.setUserIdentifierValue(the_userid_to_lookup);

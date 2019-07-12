@@ -4,14 +4,10 @@
   @GrabResolver(name='mvnRepository', root='http://central.maven.org/maven2/'),
   @GrabResolver(name='kint', root='http://nexus.k-int.com/content/repositories/releases'),
   @GrabResolver(name='kint', root='http://nexus.k-int.com/content/repositories/snapshots'),
-  // @Grab(group='org.slf4j', module='slf4j-api', version='1.7.25'),
-  // @Grab(group='net.sf.opencsv', module='opencsv', version='2.3'),
   @Grab(group='org.apache.httpcomponents', module='httpmime', version='4.1.2'),
   @Grab(group='org.apache.httpcomponents', module='httpclient', version='4.5.3'),
   @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1'),
   @Grab(group='org.apache.httpcomponents', module='httpmime', version='4.1.2'),
-  // @Grab(group='org.slf4j', module='slf4j-api', version='1.7.6'),
-  // @Grab(group='org.slf4j', module='jcl-over-slf4j', version='1.7.6'),
   @Grab(group='net.sourceforge.nekohtml', module='nekohtml', version='1.9.22'),
   @Grab(group='xerces', module='xercesImpl', version='2.11.0'),
   @Grab(group='org.olf', module='ncip-tools', version='1.0.2-SNAPSHOT', changing=true)
@@ -42,6 +38,8 @@ import static groovyx.net.http.Method.POST
 import java.util.Properties
 import java.text.*
 import org.olf.ncip.client.*
+
+import groovy.util.logging.*   
 
 def cli = new CliBuilder(usage: 'groovy ./CLI.groovy -h -v 1 -u user -p pass -t NCIPTargetUrl')
 // Create the list of options.
